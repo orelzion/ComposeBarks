@@ -27,7 +27,7 @@ class DogsListViewModel(
             _dogsListLiveData.postValue(value)
         }
 
-    fun onLoaded() {
+    init {
         if (viewState.dogsListViewData.dogsImageList.isEmpty()) {
             viewModelScope.launch {
                 val result = dogsRepository.loadDogs("hound")

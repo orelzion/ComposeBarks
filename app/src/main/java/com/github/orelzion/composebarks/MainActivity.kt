@@ -14,8 +14,14 @@ import com.github.orelzion.composebarks.ui.theme.ComposeBarksTheme
 import com.github.orelzion.composebarks.view.Destinations
 import com.github.orelzion.composebarks.view.screens.DogImageScreen
 import com.github.orelzion.composebarks.view.screens.DogListScreen
+import com.github.orelzion.composebarks.viewmodel.DogsListViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
+
+    // Workaround. koin compose library is not stable yet
+    private val dogsListViewModel: DogsListViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
                     NavHost(navController, startDestination = Destinations.Home) {
                         composable(Destinations.Home)
-                        { DogListScreen() }
+                        { DogListScreen(dogsListViewModel) }
                         composable("${Destinations.DogsImage}/${Destinations.DogImageArgs.ImageUrl}")
                         { DogImageScreen(it.arguments?.getString(Destinations.DogImageArgs.ImageUrl)) }
                     }
