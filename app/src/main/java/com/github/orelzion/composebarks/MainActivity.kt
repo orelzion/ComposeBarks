@@ -28,6 +28,6 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun DefaultPreview() {
     ComposeBarksTheme {
-        
+
     }
 }
