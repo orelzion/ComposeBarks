@@ -5,5 +5,5 @@ import retrofit2.http.Path
 
 interface DogsNetworkService : DogsService {
     @GET("breed/{breed}/images")
-    override suspend fun getDogsImagesList(@Path("breed") breed: String): Result<DogImageResponse>
+    override suspend fun getDogsImagesList(@Path("breed") breed: String): Result<DogsImageResponse>
 }
