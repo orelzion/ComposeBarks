@@ -1,5 +1,6 @@
 package com.github.orelzion.composebarks.view.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -23,13 +24,14 @@ import com.github.orelzion.composebarks.viewmodel.DogsListViewState
 import dev.chrisbanes.accompanist.glide.GlideImage
 
 @Composable
-fun DogListScreen(vm: DogsListViewModel) {
+fun DogListScreen(vm: DogsListViewModel, onItemClicked: (String) -> Unit) {
     val viewState by vm.dogsListLiveData.observeAsState()
 
     when (viewState) {
         is DogsListViewState.Error -> TODO()
         is DogsListViewState.Loaded -> imageList(
-            items = viewState?.dogsListViewData?.dogsImageList ?: emptyList()
+            items = viewState?.dogsListViewData?.dogsImageList ?: emptyList(),
+            onItemClicked = onItemClicked
         )
         is DogsListViewState.Loading -> loader()
     }
@@ -43,18 +45,20 @@ fun loader() {
 }
 
 @Composable
-fun imageList(items: List<String>) {
-    LazyColumn(modifier = Modifier.padding(16.dp)) {
+fun imageList(items: List<String>, onItemClicked: (String) -> Unit) {
+    LazyColumn(modifier = Modifier.padding(8.dp)) {
         items(items = items) { dogImage ->
-            DogImage(url = dogImage)
-            Divider(modifier = Modifier.height(2.dp), color = Color.Transparent)
+            DogImage(url = dogImage, onItemClicked = onItemClicked)
+            Divider(modifier = Modifier.height(4.dp), color = Color.Transparent)
         }
     }
 }
 
 @Composable
-fun DogImage(url: String) {
-    Box(modifier = Modifier.clip(RoundedCornerShape(4.dp))) {
+fun DogImage(url: String, onItemClicked: (String) -> Unit) {
+    Box(modifier = Modifier
+        .clip(RoundedCornerShape(4.dp))
+        .clickable { onItemClicked.invoke(url) }) {
         GlideImage(
             data = url,
             contentDescription = null,
