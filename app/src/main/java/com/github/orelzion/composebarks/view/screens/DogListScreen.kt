@@ -8,7 +8,7 @@ fun DogListScreen() {
 
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewDogList() {
     DogListScreen()

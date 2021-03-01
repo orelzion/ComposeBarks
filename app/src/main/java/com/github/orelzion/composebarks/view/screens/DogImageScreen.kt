@@ -4,12 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun DogImageScreen() {
+fun DogImageScreen(imageUrl: String?) {
 
 }
 
 @Preview
 @Composable
 fun PreviewImageScreen() {
-    DogImageScreen()
+    DogImageScreen("https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg")
 }
