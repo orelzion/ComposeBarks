@@ -6,7 +6,7 @@ import com.github.orelzion.composebarks.model.DogsRepository
 import kotlinx.coroutines.launch
 
 class DogsListViewModel(
-    private val savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle,
     private val dogsRepository: DogsRepository
 ) : ViewModel() {
 

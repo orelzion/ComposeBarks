@@ -35,10 +35,12 @@ class MainActivity : AppCompatActivity() {
                     val actions = remember(navController) { Actions(navController) }
 
                     NavHost(navController, startDestination = Destinations.Home) {
-                        composable(Destinations.Home)
-                        { DogListScreen(dogsListViewModel, actions.openFullImage) }
-                        composable("${Destinations.DogsImage}/{${Destinations.DogImageArgs.ImageUrl}}")
-                        { DogImageScreen(it.arguments?.getString(Destinations.DogImageArgs.ImageUrl)) }
+                        composable(Destinations.Home) {
+                            DogListScreen(dogsListViewModel, actions.openFullImage)
+                        }
+                        composable("${Destinations.DogsImage}/{${Destinations.DogImageArgs.ImageUrl}}") {
+                            DogImageScreen(it.arguments?.getString(Destinations.DogImageArgs.ImageUrl))
+                        }
                     }
                 }
             }

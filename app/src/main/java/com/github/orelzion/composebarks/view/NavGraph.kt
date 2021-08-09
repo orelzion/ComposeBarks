@@ -1,8 +1,8 @@
 package com.github.orelzion.composebarks.view
 
 import androidx.navigation.NavController
-import androidx.navigation.compose.navigate
 import com.github.orelzion.composebarks.view.Destinations.DogsImage
+import java.net.URLEncoder
 
 object Destinations {
     const val Home = "home"
@@ -13,9 +13,10 @@ object Destinations {
     }
 }
 
-class Actions(val navController: NavController) {
+class Actions(private val navController: NavController) {
     val openFullImage: (String) -> Unit = { url ->
-        navController.navigate("$DogsImage/$url")
+        val urlEncoded = URLEncoder.encode(url, "utf-8")
+        navController.navigate("$DogsImage/${urlEncoded}")
     }
 
     val navigateUp: () -> Unit = {

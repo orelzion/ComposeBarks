@@ -1,20 +1,19 @@
 package com.github.orelzion.composebarks.view.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
-import dev.chrisbanes.accompanist.glide.GlideImage
+import coil.compose.rememberImagePainter
 
 @Composable
 fun DogImageScreen(imageUrl: String?) {
     imageUrl?.let {
-        GlideImage(
-            modifier = Modifier.fillMaxSize(),
-            data = imageUrl,
-            contentDescription = null,
-            contentScale = ContentScale.Crop
+        Image(
+            painter = rememberImagePainter(imageUrl),
+            contentDescription = "A dog image",
+            modifier = Modifier.fillMaxSize()
         )
     }
 }
